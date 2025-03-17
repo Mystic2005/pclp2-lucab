@@ -1,0 +1,371 @@
+pwndbg> next
+293     in ./stdlib/random.c
+LEGEND: STACK | HEAP | CODE | DATA | WX | RODATA
+────────────────────────────────────────[ REGISTERS / show-flags off / show-compact-regs off ]─────────────────────────────────────────
+ RAX  0
+ RBX  0x7fffffffdd98 —▸ 0x7fffffffe13f ◂— '/home/student/hardware-software-interface/labs/lab-03/tasks/old-hits/support/old-hits'
+ RCX  0x7ffff7a036a0 (unsafe_state) —▸ 0x7ffff7a03030 (randtbl+16) ◂— 0x6a02a884403b45fa
+ RDX  1
+ RDI  0x7ffff7a030a0 (pa_next_type) ◂— 8
+ RSI  0xffffffff
+ R8   0x7ffff7a03024 (randtbl+4) ◂— 0x64159bb672d6455
+ R9   0xe9437198
+ R10  0xfd2b082c
+ R11  0x16
+ R12  1
+ R13  0
+ R14  0
+ R15  0x7ffff7ffd000 (_rtld_global) —▸ 0x7ffff7ffe2e0 —▸ 0x555555554000 ◂— 0x10102464c457f
+ RBP  0x7fffffffdc50 —▸ 0x7fffffffdc70 —▸ 0x7fffffffdd10 —▸ 0x7fffffffdd70 ◂— 0
+ RSP  0x7fffffffdc40 ◂— 0
+*RIP  0x7ffff784a2da (random+42) ◂— lea rsi, [rbp - 0xc]
+─────────────────────────────────────────────────[ DISASM / x86-64 / set emulate on ]──────────────────────────────────────────────────
+   0x7ffff784a2c1 <random+17>    mov    rax, qword ptr fs:[0x28]                  RAX, [0x7ffff7f9cea8] => 0x2b23b616dca71e00
+   0x7ffff784a2ca <random+26>    mov    qword ptr [rbp - 8], rax                  [0x7fffffffdc48] <= 0x2b23b616dca71e00
+   0x7ffff784a2ce <random+30>    xor    eax, eax                                  EAX => 0
+   0x7ffff784a2d0 <random+32>    lock cmpxchg dword ptr [rip + 0x1bb138], edx
+   0x7ffff784a2d8 <random+40>    jne    random+96                   <random+96>
+ 
+ ► 0x7ffff784a2da <random+42>    lea    rsi, [rbp - 0xc]          RSI => 0x7fffffffdc44 ◂— 0xdca71e0000000000
+   0x7ffff784a2de <random+46>    lea    rdi, [rip + 0x1b93bb]     RDI => 0x7ffff7a036a0 (unsafe_state) —▸ 0x7ffff7a03030 (randtbl+16) ◂— 0x6a02a884403b45fa
+   0x7ffff784a2e5 <random+53>    call   random_r                    <random_r>
+ 
+   0x7ffff784a2ea <random+58>    xor    eax, eax                            EAX => 0
+   0x7ffff784a2ec <random+60>    xchg   dword ptr [rip + 0x1bb11e], eax
+   0x7ffff784a2f2 <random+66>    cmp    eax, 1
+───────────────────────────────────────────────────────────────[ STACK ]───────────────────────────────────────────────────────────────
+00:0000│ rsp 0x7fffffffdc40 ◂— 0
+01:0008│-008 0x7fffffffdc48 ◂— 0x2b23b616dca71e00
+02:0010│ rbp 0x7fffffffdc50 —▸ 0x7fffffffdc70 —▸ 0x7fffffffdd10 —▸ 0x7fffffffdd70 ◂— 0
+03:0018│+008 0x7fffffffdc58 —▸ 0x55555555585c (main+49) ◂— mov dword ptr [rip + 0x37d2], eax
+04:0020│+010 0x7fffffffdc60 —▸ 0x7fffffffdd50 —▸ 0x555555555300 (_start) ◂— endbr64 
+05:0028│+018 0x7fffffffdc68 ◂— 0x2b23b616dca71e00
+06:0030│+020 0x7fffffffdc70 —▸ 0x7fffffffdd10 —▸ 0x7fffffffdd70 ◂— 0
+07:0038│+028 0x7fffffffdc78 —▸ 0x7ffff782a1ca (__libc_start_call_main+122) ◂— mov edi, eax
+─────────────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────────────
+ ► 0   0x7ffff784a2da random+42
+   1   0x55555555585c main+49
+   2   0x7ffff782a1ca __libc_start_call_main+122
+   3   0x7ffff782a28b __libc_start_main+139
+   4   0x55555555532e _start+46
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> next
+295     in ./stdlib/random.c
+LEGEND: STACK | HEAP | CODE | DATA | WX | RODATA
+────────────────────────────────────────[ REGISTERS / show-flags off / show-compact-regs off ]─────────────────────────────────────────
+ RAX  0
+ RBX  0x7fffffffdd98 —▸ 0x7fffffffe13f ◂— '/home/student/hardware-software-interface/labs/lab-03/tasks/old-hits/support/old-hits'
+*RCX  0x7ffff7a03028 (randtbl+8) ◂— 0x1ba9f82064159bb
+*RDX  0x7ffff7a03034 (randtbl+20) ◂— 0x5c8eae76a02a884
+*RDI  0x7ffff7a036a0 (unsafe_state) —▸ 0x7ffff7a03034 (randtbl+20) ◂— 0x5c8eae76a02a884
+*RSI  0x7fffffffdc44 ◂— 0xdca71e0053b45527
+*R8   0x7ffff7a03034 (randtbl+20) ◂— 0x5c8eae76a02a884
+*R9   0x7ffff7a030a0 (pa_next_type) ◂— 8
+ R10  0xfd2b082c
+ R11  0x16
+ R12  1
+ R13  0
+ R14  0
+ R15  0x7ffff7ffd000 (_rtld_global) —▸ 0x7ffff7ffe2e0 —▸ 0x555555554000 ◂— 0x10102464c457f
+ RBP  0x7fffffffdc50 —▸ 0x7fffffffdc70 —▸ 0x7fffffffdd10 —▸ 0x7fffffffdd70 ◂— 0
+ RSP  0x7fffffffdc40 ◂— 0x53b4552700000000
+*RIP  0x7ffff784a2ea (random+58) ◂— xor eax, eax
+─────────────────────────────────────────────────[ DISASM / x86-64 / set emulate on ]──────────────────────────────────────────────────
+   0x7ffff784a2d0 <random+32>    lock cmpxchg dword ptr [rip + 0x1bb138], edx
+   0x7ffff784a2d8 <random+40>    jne    random+96                   <random+96>
+ 
+   0x7ffff784a2da <random+42>    lea    rsi, [rbp - 0xc]          RSI => 0x7fffffffdc44 ◂— 0xdca71e0000000000
+   0x7ffff784a2de <random+46>    lea    rdi, [rip + 0x1b93bb]     RDI => 0x7ffff7a036a0 (unsafe_state) —▸ 0x7ffff7a03030 (randtbl+16) ◂— 0x6a02a884403b45fa
+   0x7ffff784a2e5 <random+53>    call   random_r                    <random_r>
+ 
+ ► 0x7ffff784a2ea <random+58>    xor    eax, eax                            EAX => 0
+   0x7ffff784a2ec <random+60>    xchg   dword ptr [rip + 0x1bb11e], eax     [lock] <= 0, EAX => 1
+   0x7ffff784a2f2 <random+66>    cmp    eax, 1                              1 - 1     EFLAGS => 0x246 [ cf PF af ZF sf IF df of ]
+   0x7ffff784a2f5 <random+69>    jg     random+112                  <random+112>
+ 
+   0x7ffff784a2f7 <random+71>    movsxd rax, dword ptr [rbp - 0xc]          RAX, [0x7fffffffdc44] => 0x53b45527
+   0x7ffff784a2fb <random+75>    mov    rdx, qword ptr [rbp - 8]            RDX, [0x7fffffffdc48] => 0x2b23b616dca71e00
+───────────────────────────────────────────────────────────────[ STACK ]───────────────────────────────────────────────────────────────
+00:0000│ rsp rsi-4 0x7fffffffdc40 ◂— 0x53b4552700000000
+01:0008│-008       0x7fffffffdc48 ◂— 0x2b23b616dca71e00
+02:0010│ rbp       0x7fffffffdc50 —▸ 0x7fffffffdc70 —▸ 0x7fffffffdd10 —▸ 0x7fffffffdd70 ◂— 0
+03:0018│+008       0x7fffffffdc58 —▸ 0x55555555585c (main+49) ◂— mov dword ptr [rip + 0x37d2], eax
+04:0020│+010       0x7fffffffdc60 —▸ 0x7fffffffdd50 —▸ 0x555555555300 (_start) ◂— endbr64 
+05:0028│+018       0x7fffffffdc68 ◂— 0x2b23b616dca71e00
+06:0030│+020       0x7fffffffdc70 —▸ 0x7fffffffdd10 —▸ 0x7fffffffdd70 ◂— 0
+07:0038│+028       0x7fffffffdc78 —▸ 0x7ffff782a1ca (__libc_start_call_main+122) ◂— mov edi, eax
+─────────────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────────────
+ ► 0   0x7ffff784a2ea random+58
+   1   0x55555555585c main+49
+   2   0x7ffff782a1ca __libc_start_call_main+122
+   3   0x7ffff782a28b __libc_start_main+139
+   4   0x55555555532e _start+46
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> next
+297     in ./stdlib/random.c
+LEGEND: STACK | HEAP | CODE | DATA | WX | RODATA
+────────────────────────────────────────[ REGISTERS / show-flags off / show-compact-regs off ]─────────────────────────────────────────
+*RAX  1
+ RBX  0x7fffffffdd98 —▸ 0x7fffffffe13f ◂— '/home/student/hardware-software-interface/labs/lab-03/tasks/old-hits/support/old-hits'
+ RCX  0x7ffff7a03028 (randtbl+8) ◂— 0x1ba9f82064159bb
+ RDX  0x7ffff7a03034 (randtbl+20) ◂— 0x5c8eae76a02a884
+ RDI  0x7ffff7a036a0 (unsafe_state) —▸ 0x7ffff7a03034 (randtbl+20) ◂— 0x5c8eae76a02a884
+ RSI  0x7fffffffdc44 ◂— 0xdca71e0053b45527
+ R8   0x7ffff7a03034 (randtbl+20) ◂— 0x5c8eae76a02a884
+ R9   0x7ffff7a030a0 (pa_next_type) ◂— 8
+ R10  0xfd2b082c
+ R11  0x16
+ R12  1
+ R13  0
+ R14  0
+ R15  0x7ffff7ffd000 (_rtld_global) —▸ 0x7ffff7ffe2e0 —▸ 0x555555554000 ◂— 0x10102464c457f
+ RBP  0x7fffffffdc50 —▸ 0x7fffffffdc70 —▸ 0x7fffffffdd10 —▸ 0x7fffffffdd70 ◂— 0
+ RSP  0x7fffffffdc40 ◂— 0x53b4552700000000
+*RIP  0x7ffff784a2f7 (random+71) ◂— movsxd rax, dword ptr [rbp - 0xc]
+─────────────────────────────────────────────────[ DISASM / x86-64 / set emulate on ]──────────────────────────────────────────────────
+   0x7ffff784a2e5 <random+53>    call   random_r                    <random_r>
+ 
+   0x7ffff784a2ea <random+58>    xor    eax, eax                            EAX => 0
+   0x7ffff784a2ec <random+60>    xchg   dword ptr [rip + 0x1bb11e], eax     [lock] <= 0, EAX => 1
+   0x7ffff784a2f2 <random+66>    cmp    eax, 1                              1 - 1     EFLAGS => 0x246 [ cf PF af ZF sf IF df of ]
+   0x7ffff784a2f5 <random+69>    jg     random+112                  <random+112>
+ 
+ ► 0x7ffff784a2f7 <random+71>    movsxd rax, dword ptr [rbp - 0xc]          RAX, [0x7fffffffdc44] => 0x53b45527
+   0x7ffff784a2fb <random+75>    mov    rdx, qword ptr [rbp - 8]            RDX, [0x7fffffffdc48] => 0x2b23b616dca71e00
+   0x7ffff784a2ff <random+79>    sub    rdx, qword ptr fs:[0x28]            RDX => 0 (0x2b23b616dca71e00 - 0x2b23b616dca71e00)
+   0x7ffff784a308 <random+88>    jne    random+126                  <random+126>
+ 
+   0x7ffff784a30a <random+90>    leave  
+   0x7ffff784a30b <random+91>    ret                                <main+49>
+───────────────────────────────────────────────────────────────[ STACK ]───────────────────────────────────────────────────────────────
+00:0000│ rsp rsi-4 0x7fffffffdc40 ◂— 0x53b4552700000000
+01:0008│-008       0x7fffffffdc48 ◂— 0x2b23b616dca71e00
+02:0010│ rbp       0x7fffffffdc50 —▸ 0x7fffffffdc70 —▸ 0x7fffffffdd10 —▸ 0x7fffffffdd70 ◂— 0
+03:0018│+008       0x7fffffffdc58 —▸ 0x55555555585c (main+49) ◂— mov dword ptr [rip + 0x37d2], eax
+04:0020│+010       0x7fffffffdc60 —▸ 0x7fffffffdd50 —▸ 0x555555555300 (_start) ◂— endbr64 
+05:0028│+018       0x7fffffffdc68 ◂— 0x2b23b616dca71e00
+06:0030│+020       0x7fffffffdc70 —▸ 0x7fffffffdd10 —▸ 0x7fffffffdd70 ◂— 0
+07:0038│+028       0x7fffffffdc78 —▸ 0x7ffff782a1ca (__libc_start_call_main+122) ◂— mov edi, eax
+─────────────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────────────
+ ► 0   0x7ffff784a2f7 random+71
+   1   0x55555555585c main+49
+   2   0x7ffff782a1ca __libc_start_call_main+122
+   3   0x7ffff782a28b __libc_start_main+139
+   4   0x55555555532e _start+46
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> next
+0x000055555555585c in main ()
+LEGEND: STACK | HEAP | CODE | DATA | WX | RODATA
+────────────────────────────────────────[ REGISTERS / show-flags off / show-compact-regs off ]─────────────────────────────────────────
+*RAX  0x53b45527
+ RBX  0x7fffffffdd98 —▸ 0x7fffffffe13f ◂— '/home/student/hardware-software-interface/labs/lab-03/tasks/old-hits/support/old-hits'
+ RCX  0x7ffff7a03028 (randtbl+8) ◂— 0x1ba9f82064159bb
+*RDX  0
+ RDI  0x7ffff7a036a0 (unsafe_state) —▸ 0x7ffff7a03034 (randtbl+20) ◂— 0x5c8eae76a02a884
+ RSI  0x7fffffffdc44 ◂— 0xdca71e0053b45527
+ R8   0x7ffff7a03034 (randtbl+20) ◂— 0x5c8eae76a02a884
+ R9   0x7ffff7a030a0 (pa_next_type) ◂— 8
+ R10  0xfd2b082c
+ R11  0x16
+ R12  1
+ R13  0
+ R14  0
+ R15  0x7ffff7ffd000 (_rtld_global) —▸ 0x7ffff7ffe2e0 —▸ 0x555555554000 ◂— 0x10102464c457f
+*RBP  0x7fffffffdc70 —▸ 0x7fffffffdd10 —▸ 0x7fffffffdd70 ◂— 0
+*RSP  0x7fffffffdc60 —▸ 0x7fffffffdd50 —▸ 0x555555555300 (_start) ◂— endbr64 
+*RIP  0x55555555585c (main+49) ◂— mov dword ptr [rip + 0x37d2], eax
+─────────────────────────────────────────────────[ DISASM / x86-64 / set emulate on ]──────────────────────────────────────────────────
+   0x7ffff784a2fb <random+75>    mov    rdx, qword ptr [rbp - 8]
+   0x7ffff784a2ff <random+79>    sub    rdx, qword ptr fs:[0x28]
+   0x7ffff784a308 <random+88>    jne    random+126                  <random+126>
+ 
+   0x7ffff784a30a <random+90>    leave  
+   0x7ffff784a30b <random+91>    ret    
+ 
+ ► 0x55555555585c <main+49>      mov    dword ptr [rip + 0x37d2], eax     [secret] <= 0x53b45527
+   0x555555555862 <main+55>      lea    rdi, [rip + 0x1867]               RDI => 0x5555555570d0 ◂— 'Enter your guessed secret (int): '
+   0x555555555869 <main+62>      mov    eax, 0                            EAX => 0
+   0x55555555586e <main+67>      call   printf@plt                  <printf@plt>
+ 
+   0x555555555873 <main+72>      mov    rax, qword ptr [rip + 0x37ae]     RAX, [stdout@@GLIBC_2.2.5]
+   0x55555555587a <main+79>      mov    rdi, rax
+───────────────────────────────────────────────────────────────[ STACK ]───────────────────────────────────────────────────────────────
+00:0000│ rsp 0x7fffffffdc60 —▸ 0x7fffffffdd50 —▸ 0x555555555300 (_start) ◂— endbr64 
+01:0008│-008 0x7fffffffdc68 ◂— 0x2b23b616dca71e00
+02:0010│ rbp 0x7fffffffdc70 —▸ 0x7fffffffdd10 —▸ 0x7fffffffdd70 ◂— 0
+03:0018│+008 0x7fffffffdc78 —▸ 0x7ffff782a1ca (__libc_start_call_main+122) ◂— mov edi, eax
+04:0020│+010 0x7fffffffdc80 —▸ 0x7fffffffdcc0 ◂— 0
+05:0028│+018 0x7fffffffdc88 —▸ 0x7fffffffdd98 —▸ 0x7fffffffe13f ◂— '/home/student/hardware-software-interface/labs/lab-03/tasks/old-hits/support/old-hits'
+06:0030│+020 0x7fffffffdc90 ◂— 0x100000001
+07:0038│+028 0x7fffffffdc98 —▸ 0x55555555582b (main) ◂— endbr64 
+─────────────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────────────
+ ► 0   0x55555555585c main+49
+   1   0x7ffff782a1ca __libc_start_call_main+122
+   2   0x7ffff782a28b __libc_start_main+139
+   3   0x55555555532e _start+46
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> next
+0x0000555555555862 in main ()
+LEGEND: STACK | HEAP | CODE | DATA | WX | RODATA
+────────────────────────────────────────[ REGISTERS / show-flags off / show-compact-regs off ]─────────────────────────────────────────
+ RAX  0x53b45527
+ RBX  0x7fffffffdd98 —▸ 0x7fffffffe13f ◂— '/home/student/hardware-software-interface/labs/lab-03/tasks/old-hits/support/old-hits'
+ RCX  0x7ffff7a03028 (randtbl+8) ◂— 0x1ba9f82064159bb
+ RDX  0
+ RDI  0x7ffff7a036a0 (unsafe_state) —▸ 0x7ffff7a03034 (randtbl+20) ◂— 0x5c8eae76a02a884
+ RSI  0x7fffffffdc44 ◂— 0xdca71e0053b45527
+ R8   0x7ffff7a03034 (randtbl+20) ◂— 0x5c8eae76a02a884
+ R9   0x7ffff7a030a0 (pa_next_type) ◂— 8
+ R10  0xfd2b082c
+ R11  0x16
+ R12  1
+ R13  0
+ R14  0
+ R15  0x7ffff7ffd000 (_rtld_global) —▸ 0x7ffff7ffe2e0 —▸ 0x555555554000 ◂— 0x10102464c457f
+ RBP  0x7fffffffdc70 —▸ 0x7fffffffdd10 —▸ 0x7fffffffdd70 ◂— 0
+ RSP  0x7fffffffdc60 —▸ 0x7fffffffdd50 —▸ 0x555555555300 (_start) ◂— endbr64 
+*RIP  0x555555555862 (main+55) ◂— lea rdi, [rip + 0x1867]
+─────────────────────────────────────────────────[ DISASM / x86-64 / set emulate on ]──────────────────────────────────────────────────
+   0x7ffff784a2ff <random+79>    sub    rdx, qword ptr fs:[0x28]
+   0x7ffff784a308 <random+88>    jne    random+126                  <random+126>
+ 
+   0x7ffff784a30a <random+90>    leave  
+   0x7ffff784a30b <random+91>    ret    
+ 
+   0x55555555585c <main+49>      mov    dword ptr [rip + 0x37d2], eax     [secret] <= 0x53b45527
+ ► 0x555555555862 <main+55>      lea    rdi, [rip + 0x1867]               RDI => 0x5555555570d0 ◂— 'Enter your guessed secret (int): '
+   0x555555555869 <main+62>      mov    eax, 0                            EAX => 0
+   0x55555555586e <main+67>      call   printf@plt                  <printf@plt>
+ 
+   0x555555555873 <main+72>      mov    rax, qword ptr [rip + 0x37ae]     RAX, [stdout@@GLIBC_2.2.5]
+   0x55555555587a <main+79>      mov    rdi, rax
+   0x55555555587d <main+82>      call   fflush@plt                  <fflush@plt>
+───────────────────────────────────────────────────────────────[ STACK ]───────────────────────────────────────────────────────────────
+00:0000│ rsp 0x7fffffffdc60 —▸ 0x7fffffffdd50 —▸ 0x555555555300 (_start) ◂— endbr64 
+01:0008│-008 0x7fffffffdc68 ◂— 0x2b23b616dca71e00
+02:0010│ rbp 0x7fffffffdc70 —▸ 0x7fffffffdd10 —▸ 0x7fffffffdd70 ◂— 0
+03:0018│+008 0x7fffffffdc78 —▸ 0x7ffff782a1ca (__libc_start_call_main+122) ◂— mov edi, eax
+04:0020│+010 0x7fffffffdc80 —▸ 0x7fffffffdcc0 ◂— 0
+05:0028│+018 0x7fffffffdc88 —▸ 0x7fffffffdd98 —▸ 0x7fffffffe13f ◂— '/home/student/hardware-software-interface/labs/lab-03/tasks/old-hits/support/old-hits'
+06:0030│+020 0x7fffffffdc90 ◂— 0x100000001
+07:0038│+028 0x7fffffffdc98 —▸ 0x55555555582b (main) ◂— endbr64 
+─────────────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────────────
+ ► 0   0x555555555862 main+55
+   1   0x7ffff782a1ca __libc_start_call_main+122
+   2   0x7ffff782a28b __libc_start_main+139
+   3   0x55555555532e _start+46
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> p (int) secret
+$6 = 1404327207
+pwndbg> next
+0x0000555555555869 in main ()
+LEGEND: STACK | HEAP | CODE | DATA | WX | RODATA
+────────────────────────────────────────[ REGISTERS / show-flags off / show-compact-regs off ]─────────────────────────────────────────
+ RAX  0x53b45527
+ RBX  0x7fffffffdd98 —▸ 0x7fffffffe13f ◂— '/home/student/hardware-software-interface/labs/lab-03/tasks/old-hits/support/old-hits'
+ RCX  0x7ffff7a03028 (randtbl+8) ◂— 0x1ba9f82064159bb
+ RDX  0
+*RDI  0x5555555570d0 ◂— 'Enter your guessed secret (int): '
+ RSI  0x7fffffffdc44 ◂— 0xdca71e0053b45527
+ R8   0x7ffff7a03034 (randtbl+20) ◂— 0x5c8eae76a02a884
+ R9   0x7ffff7a030a0 (pa_next_type) ◂— 8
+ R10  0xfd2b082c
+ R11  0x16
+ R12  1
+ R13  0
+ R14  0
+ R15  0x7ffff7ffd000 (_rtld_global) —▸ 0x7ffff7ffe2e0 —▸ 0x555555554000 ◂— 0x10102464c457f
+ RBP  0x7fffffffdc70 —▸ 0x7fffffffdd10 —▸ 0x7fffffffdd70 ◂— 0
+ RSP  0x7fffffffdc60 —▸ 0x7fffffffdd50 —▸ 0x555555555300 (_start) ◂— endbr64 
+*RIP  0x555555555869 (main+62) ◂— mov eax, 0
+─────────────────────────────────────────────────[ DISASM / x86-64 / set emulate on ]──────────────────────────────────────────────────
+   0x7ffff784a308 <random+88>    jne    random+126                  <random+126>
+ 
+   0x7ffff784a30a <random+90>    leave  
+   0x7ffff784a30b <random+91>    ret    
+ 
+   0x55555555585c <main+49>      mov    dword ptr [rip + 0x37d2], eax     [secret] <= 0x53b45527
+   0x555555555862 <main+55>      lea    rdi, [rip + 0x1867]               RDI => 0x5555555570d0 ◂— 'Enter your guessed secret (int): '
+ ► 0x555555555869 <main+62>      mov    eax, 0                            EAX => 0
+   0x55555555586e <main+67>      call   printf@plt                  <printf@plt>
+ 
+   0x555555555873 <main+72>      mov    rax, qword ptr [rip + 0x37ae]     RAX, [stdout@@GLIBC_2.2.5]
+   0x55555555587a <main+79>      mov    rdi, rax
+   0x55555555587d <main+82>      call   fflush@plt                  <fflush@plt>
+ 
+   0x555555555882 <main+87>      lea    rax, [rbp - 0x10]
+───────────────────────────────────────────────────────────────[ STACK ]───────────────────────────────────────────────────────────────
+00:0000│ rsp 0x7fffffffdc60 —▸ 0x7fffffffdd50 —▸ 0x555555555300 (_start) ◂— endbr64 
+01:0008│-008 0x7fffffffdc68 ◂— 0x2b23b616dca71e00
+02:0010│ rbp 0x7fffffffdc70 —▸ 0x7fffffffdd10 —▸ 0x7fffffffdd70 ◂— 0
+03:0018│+008 0x7fffffffdc78 —▸ 0x7ffff782a1ca (__libc_start_call_main+122) ◂— mov edi, eax
+04:0020│+010 0x7fffffffdc80 —▸ 0x7fffffffdcc0 ◂— 0
+05:0028│+018 0x7fffffffdc88 —▸ 0x7fffffffdd98 —▸ 0x7fffffffe13f ◂— '/home/student/hardware-software-interface/labs/lab-03/tasks/old-hits/support/old-hits'
+06:0030│+020 0x7fffffffdc90 ◂— 0x100000001
+07:0038│+028 0x7fffffffdc98 —▸ 0x55555555582b (main) ◂— endbr64 
+─────────────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────────────
+ ► 0   0x555555555869 main+62
+   1   0x7ffff782a1ca __libc_start_call_main+122
+   2   0x7ffff782a28b __libc_start_main+139
+   3   0x55555555532e _start+46
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> c
+Continuing.
+Enter your guessed secret (int): 1404328544
+
+Breakpoint 2, __random () at ./stdlib/random.c:288
+288     in ./stdlib/random.c
+LEGEND: STACK | HEAP | CODE | DATA | WX | RODATA
+────────────────────────────────────────[ REGISTERS / show-flags off / show-compact-regs off ]─────────────────────────────────────────
+*RAX  0xa
+ RBX  0x7fffffffdd98 —▸ 0x7fffffffe13f ◂— '/home/student/hardware-software-interface/labs/lab-03/tasks/old-hits/support/old-hits'
+*RCX  0xfcfe400000000000
+ RDX  0
+*RDI  0x7fffffffcc40 ◂— 0x2f2f3a7370747468 ('https://')
+*RSI  0x2b
+*R8   0x4000
+*R9   7
+*R10  0x55555555aac0 ◂— 0x55555555a
+*R11  0x5cf66a85110f83a4
+ R12  1
+ R13  0
+ R14  0
+ R15  0x7ffff7ffd000 (_rtld_global) —▸ 0x7ffff7ffe2e0 —▸ 0x555555554000 ◂— 0x10102464c457f
+*RBP  0x7fffffffdc50 —▸ 0x7fffffffdc70 —▸ 0x7fffffffdd10 —▸ 0x7fffffffdd70 ◂— 0
+*RSP  0x7fffffffac08 —▸ 0x555555555784 (show_link+448) ◂— mov edx, dword ptr [rbp - 0x3020]
+*RIP  0x7ffff784a2b0 (random) ◂— endbr64 
+─────────────────────────────────────────────────[ DISASM / x86-64 / set emulate on ]──────────────────────────────────────────────────
+ ► 0x7ffff784a2b0 <random>       endbr64 
+   0x7ffff784a2b4 <random+4>     push   rbp
+   0x7ffff784a2b5 <random+5>     mov    edx, 1                                    EDX => 1
+   0x7ffff784a2ba <random+10>    mov    rbp, rsp                                  RBP => 0x7fffffffac00 —▸ 0x7fffffffdc50 —▸ 0x7fffffffdc70 —▸ 0x7fffffffdd10 ◂— ...                                                                                                          
+   0x7ffff784a2bd <random+13>    sub    rsp, 0x10                                 RSP => 0x7fffffffabf0 (0x7fffffffac00 - 0x10)
+   0x7ffff784a2c1 <random+17>    mov    rax, qword ptr fs:[0x28]                  RAX, [0x7ffff7f9cea8] => 0x2b23b616dca71e00
+   0x7ffff784a2ca <random+26>    mov    qword ptr [rbp - 8], rax                  [0x7fffffffabf8] <= 0x2b23b616dca71e00
+   0x7ffff784a2ce <random+30>    xor    eax, eax                                  EAX => 0
+   0x7ffff784a2d0 <random+32>    lock cmpxchg dword ptr [rip + 0x1bb138], edx
+   0x7ffff784a2d8 <random+40>    jne    random+96                   <random+96>
+ 
+   0x7ffff784a2da <random+42>    lea    rsi, [rbp - 0xc]                          RSI => 0x7fffffffabf4 ◂— 0xdca71e0000005555 /* 'UU' */
+───────────────────────────────────────────────────────────────[ STACK ]───────────────────────────────────────────────────────────────
+00:0000│ rsp 0x7fffffffac08 —▸ 0x555555555784 (show_link+448) ◂— mov edx, dword ptr [rbp - 0x3020]
+01:0008│     0x7fffffffac10 ◂— 0
+02:0010│     0x7fffffffac18 ◂— 0x53b45a6000000000
+03:0018│     0x7fffffffac20 ◂— 0x2b00000000
+04:0020│     0x7fffffffac28 ◂— 0x1af000001b0
+05:0028│     0x7fffffffac30 ◂— 0xa /* '\n' */
+06:0030│     0x7fffffffac38 ◂— 0
+07:0038│     0x7fffffffac40 ◂— 0x6f6d745138557063 ('cpU8Qtmo')
+─────────────────────────────────────────────────────────────[ BACKTRACE ]─────────────────────────────────────────────────────────────
+ ► 0   0x7ffff784a2b0 random
+   1   0x555555555784 show_link+448
+   2   0x5555555558c5 main+154
+   3   0x7ffff782a1ca __libc_start_call_main+122
+   4   0x7ffff782a28b __libc_start_main+139
+   5   0x55555555532e _start+46
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+pwndbg> c
+Continuing.
+Congrats! Here's your link: https://www.youtube.com/watch?v=04F4xlWSFh0
+[Inferior 1 (process 12791) exited normally]
+pwndbg> 
