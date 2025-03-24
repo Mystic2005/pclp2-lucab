@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "pointers.h": "c",
+        "pixels.h": "c"
+    }
+}
