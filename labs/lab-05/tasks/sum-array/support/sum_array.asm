@@ -30,11 +30,56 @@ add_byte_array_element:
 
     PRINTF32 `Array sum is %u\n\x0`, eax
 
-    ; TODO: Compute sum for elements in word_array and dword_array.
+    ; Compute sum for elements in word_array
+    mov ecx, ARRAY_SIZE     ; Reset loop counter
+    xor eax, eax            ; Clear eax for the sum
+    xor edx, edx            ; Clear edx
 
-    ; TODO: Compute the sum of squares for elements in dword_array2
+add_word_array_element:
+    mov dx, word [word_array + (ecx - 1) * 2] ; Load word into dx
+    add eax, edx            ; Add dx to eax
+    loop add_word_array_element ; Decrement ecx, loop if not zero
 
-    ; TODO: Compute the sum of squares for elements in big_numbers_array
+    PRINTF32 `Word array sum is %u\n\x0`, eax
+
+    ; Compute sum for elements in dword_array
+    mov ecx, ARRAY_SIZE     ; Reset loop counter
+    xor eax, eax            ; Clear eax for the sum
+
+add_dword_array_element:
+    add eax, dword [dword_array + (ecx - 1) * 4] ; Add dword to eax
+    loop add_dword_array_element ; Decrement ecx, loop if not zero
+
+    PRINTF32 `Dword array sum is %u\n\x0`, eax
+
+    ; Compute the sum of squares for elements in dword_array2
+    mov ecx, ARRAY_SIZE     ; Reset loop counter
+    xor eax, eax            ; Clear eax for the sum
+    xor edx, edx            ; Clear edx
+
+sum_squares_dword_array2:
+    mov ebx, dword [dword_array2 + (ecx - 1) * 4] ; Load dword into ebx
+    imul ebx, ebx          ; Multiply ebx by itself
+    add eax, ebx           ; Add the square to eax
+    loop sum_squares_dword_array2 ; Decrement ecx, loop if not zero
+
+    PRINTF32 `Sum of squares (dword_array2) is %u\n\x0`, eax
+
+    ; Compute the sum of squares for elements in big_numbers_array
+    mov ecx, ARRAY_SIZE     ; Reset loop counter
+    xor eax, eax            ; Clear eax for the sum
+    xor edx, edx            ; Clear edx
+    xor ebx, ebx            ; Clear ebx for intermediate results
+
+sum_squares_big_numbers:
+    mov ebx, dword [big_numbers_array + (ecx - 1) * 4] ; Load dword into ebx
+    imul ebx, ebx          ; Multiply ebx by itself
+    add eax, ebx           ; Add the square to eax
+    adc edx, 0             ; Add carry to edx
+    loop sum_squares_big_numbers ; Decrement ecx, loop if not zero
+
+    ; Print the result (edx:eax as a 64-bit number)
+    PRINTF32 `Sum of squares (big_numbers_array) is %u (low) and %u (high)\n\x0`, eax, edx
 
     leave
     ret
