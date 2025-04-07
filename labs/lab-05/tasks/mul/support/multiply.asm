@@ -1,4 +1,4 @@
-; SPDX-License-Identifier: BSD-3-Clause
+m; SPDX-License-Identifier: BSD-3-Clause
 
 %include "printf32.asm"
 
@@ -27,8 +27,20 @@ main:
     ; Print result in hexa
     PRINTF32 `Result is: 0x%hx\n\x0`, eax
 
+    mov ax, 1349
+    mov bx, 9949
+    mul bx
 
-   ; TODO: Implement multiplication for dw and dd data types.
+    xor ebx, ebx
+    mov bx, dx
+    shl ebx, 16
+    mov bx, ax
+    PRINTF32 `Result is: 0x%x\n\x0`, ebx
+
+    mov eax, 134932
+    mov ebx, 994912
+    mul ebx
+    PRINTF32 `Result is: 0x%x%x\n\x0`, edx, eax
 
     leave
     ret
