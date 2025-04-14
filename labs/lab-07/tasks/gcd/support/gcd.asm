@@ -1,11 +1,14 @@
 %include "printf32.asm"
 
+section .data
+    fmt db "gcd(%d, %d) = %d", 10, 0
+
 section .text
 
 extern printf
 global main
+
 main:
-    ; input values (eax, edx): the 2 numbers to compute the gcd for
     mov eax, 49
     mov edx, 28
 
@@ -13,32 +16,29 @@ main:
     push edx
 
 gcd:
-    neg eax
+    cmp eax, 0
     je gcd_end
 
-swap_values:
-    neg eax
-    push eax
-    push edx
-    pop eax
-    pop edx
+    cmp eax, edx
+    jle skip_swap
 
-subtract_values:
-    sub eax,edx
-    jg subtract_values
-    jne swap_values
+    xchg eax, edx
+
+skip_swap:
+    sub edx, eax
+    jmp gcd
 
 gcd_end:
-    add eax,edx
-    jne print
-    inc eax
+    pop ecx        ; original edx (second number)
+    pop ebx        ; original eax (first number)
 
 print:
-
-    ; TODO 1: solve the 'Segmentation fault!' error
-
-    ; TODO 2: print the result in the form of: "gdc(eax, edx)=7" with PRINTF32 macro
-    ; output value in eax
+    push edx       ; result (GCD)
+    push ecx       ; second number
+    push ebx       ; first number
+    push fmt
+    call printf
+    add esp, 16
 
     xor eax, eax
     ret
