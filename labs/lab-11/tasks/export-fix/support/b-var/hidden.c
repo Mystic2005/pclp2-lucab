@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
+#include "ops.h"
+
 static int hidden_value;
 
 void init(void)

@@ -1,6 +1,7 @@
 ; SPDX-License-Identifier: BSD-3-Clause
 
 extern puts
+extern main
 
 section .rodata
 
