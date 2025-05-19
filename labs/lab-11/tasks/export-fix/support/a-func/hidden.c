@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
+#include "ops.h"
+
 int hidden_value;
 
 void init(void)
@@ -7,7 +9,7 @@ void init(void)
 	hidden_value = 0;
 }
 
-static void set(int value)
+void set(int value)
 {
 	hidden_value = value;
 }

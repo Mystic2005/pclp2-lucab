@@ -8,7 +8,7 @@ LDFLAGS = -no-pie -m32
 all: main
 
 main: main.o libops.a
-	$(CC) $(LDFLAGS) -o $@ $< -lops
+	$(CC) $(LDFLAGS) -o $@ $< -L. -lops
 
 main.o: main.c ops.h
 
@@ -20,5 +20,5 @@ add.o: add.c
 sub.o: sub.c
 
 clean:
-	-rm -f main *.o *.a
+	-rm -f main *.o
 	-rm -f *~

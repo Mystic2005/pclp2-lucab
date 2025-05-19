@@ -4,12 +4,12 @@
 
 static void hi(void)
 {
-	puts("Hi!");
+	puts("Hi!\n");
 }
 
 static void bye(void)
 {
-	puts("Bye!");
+	puts("Bye!\n");
 }
 
 int my_main(void)
