@@ -1,5 +1,5 @@
 ---
-nav_order: 2
+nav_order: 10
 parent: Lab 11 - Linking
 ---
 
@@ -20,5 +20,25 @@ Access the directory `tasks/multiple-link/support/diy/`.
 We want to compile and link the source files in each subdirectory, following the model of the previous exercise.
 
 Copy the `Makefile` files and update them in each subdirectory to obtain the executable file.
+
+**Checker**: To test the implementation, enter the tests/ directory and run:
+
+```console
+./run_all_tests.sh
+```
+
+In case of a correct solution, you will get this output:
+
+```console
+./run_all_tests.sh
+
+test_a-no-header                 ........................ passed ...  100
+test_b-header                    ........................ passed ...  100
+test_c-lib                       ........................ passed ...  100
+
+========================================================================
+
+Total:                                                             100/100
+```
 
 If you're having difficulties solving this exercise, go through [this](../../reading/linking.md) reading material.
